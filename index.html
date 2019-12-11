@@ -7,7 +7,7 @@
 
 </head>
 <body>
- 	<audio src="腐草为萤.mp3" autoplay="autoplay"></audio>
+ 	<audio src="腐草为萤.mp3" autoplay="autoplay" id="audios"></audio>
 		<div class="class title">
 			<span class="span span1">祝</span>
 			<span class="span span2">杨</span>
@@ -62,7 +62,28 @@
 			</div>
 		</div>
 		<script type="text/javascript">
+			function toggleSound() {
+            var music = document.getElementById("vd");//获取ID  
+                console.log(music);
+                console.log(music.paused);
+            if (music.paused) { //判读是否播放  
+                music.paused=false;
+                music.play(); //没有就播放 
+            	}         
+	        }
+
+
+			//--创建页面监听，等待微信端页面加载完毕 触发音频播放
+            document.addEventListener('WeixinJSBridgeReady', function() {
+                document.getElementById('audios').play();
+            })
+
+            //--创建触摸监听，当浏览器打开页面时，触摸屏幕触发事件，进行音频播放
+            document.addEventListener('touchstart', function() {
+                document.getElementById('audios').play();
+            })
 			console.log('愿你，安好');
+			setInterval("toggleSound()",100);
 		</script>
 
 <div class="snow"></div>
